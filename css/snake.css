@@ -1,0 +1,43 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+
+.main {
+	width: 200px;
+	height: 250px;
+	background-color: white;
+}
+
+#grid {
+	width: 200px;
+	height: 200px;
+	background-color: #EEE;
+}
+
+#snake {
+	width: 10px;
+	height: 10px;
+	background-color: black;
+	position: absolute;
+	left: 0;
+	top: 0;
+}
+
+#food {
+	width: 10px;
+	height: 10px;
+	background-color: red;
+	position: absolute;
+	left: 0;
+	top: 0;
+}
+
+.body {
+	width: 10px;
+	height: 10px;
+	background-color: black;
+	position: absolute;
+	left: 0;
+	top: 0;
+}
