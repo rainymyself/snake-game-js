@@ -1,24 +1,18 @@
-//'Use Strict'
-
-var $grid = $('#grid');
-var $snake = $('#snake');
-var $food = $('#food');
-
 var timer;
 
 function snakeMove(direction) {
 	switch(direction) {
 		case 'left':
-			$snake.animate({left:'-=10px'},'fast');
+			$('#snake').animate({left:'-=10px'},'fast');
 			break;
 		case 'up':
-			$snake.animate({top:'-=10px'},'fast');
+			$('#snake').animate({top:'-=10px'},'fast');
 			break;
 		case 'right':
-			$snake.animate({left:'+=10px'},'fast');
+			$('#snake').animate({left:'+=10px'},'fast');
 			break;
 		case 'down':
-			$snake.animate({top:'+=10px'},'fast');
+			$('#snake').animate({top:'+=10px'},'fast');
 			break;
 	}
 }
@@ -62,27 +56,27 @@ $(document).ready(function() {
 	$(document).keydown(function(event) {
 		switch(event.which) {
 			case 37: //moveLeft
-				//clearInterval(timer);
-				//timer=window.setInterval(function(){snakeMove('left');},200);
-				snakeMove('left');
+				clearInterval(timer);
+				timer=window.setInterval(function(){snakeMove('left');},500);
+				//snakeMove('left');
 				break;
 			case 38: //moveUp
-				//clearInterval(timer);
-				//timer=window.setInterval(function(){snakeMove('up');},200);
-				snakeMove('up');
+				clearInterval(timer);
+				timer=window.setInterval(function(){snakeMove('up');},500);
+				//snakeMove('up');
 				break;
 			case 39: //moveRight
-				//clearInterval(timer);
-				//timer=window.setInterval(function(){snakeMove('right');},200);
-				snakeMove('right');
+				clearInterval(timer);
+				timer=window.setInterval(function(){snakeMove('right');},500);
+				//snakeMove('right');
 				break;
 			case 40: //moveDown
-				//clearInterval(timer);
-				//timer=window.setInterval(function(){snakeMove('down');},200);
-				snakeMove('down');
+				clearInterval(timer);
+				timer=window.setInterval(function(){snakeMove('down');},500);
+				//snakeMove('down');
 				break;
 			default:
 				break;
-		};
+		}
 	});
 });
