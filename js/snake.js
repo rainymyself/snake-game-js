@@ -1,5 +1,34 @@
 var timer;
 
+function init() {
+	$(document).keydown(function(event) {
+		switch(event.which) {
+			case 37: //moveLeft
+				clearInterval(timer);
+				timer=window.setInterval(function(){snakeMove('left');snakeEat();},200);
+				//snakeMove('left');
+				break;
+			case 38: //moveUp
+				clearInterval(timer);
+				timer=window.setInterval(function(){snakeMove('up');snakeEat();},200);
+				//snakeMove('up');
+				break;
+			case 39: //moveRight
+				clearInterval(timer);
+				timer=window.setInterval(function(){snakeMove('right');snakeEat();},200);
+				//snakeMove('right');
+				break;
+			case 40: //moveDown
+				clearInterval(timer);
+				timer=window.setInterval(function(){snakeMove('down');snakeEat();},200);
+				//snakeMove('down');
+				break;
+			default:
+				break;
+		}
+	});
+}
+
 function snakeMove(direction) {
 	switch(direction) {
 		case 'left':
@@ -17,29 +46,36 @@ function snakeMove(direction) {
 	}
 }
 
-/*
-function createFood() {
-	$food.position().left=Math.floor(Math.random()*(202)+10);
-	$food.position().top=Math.floor(Math.random()*(380-10+1)+10);
+function snakeEat() {	
+	crashExamine($('#snake'), $('#food'));
+	function crashExamine($obj1, $obj2) {
+		var obj1Left = $obj1.offset().left;
+		var obj1Width = $obj1.width();
+		var obj2Left = $obj2.offset().left;
+		var obj2Width = $obj2.width();
+		var obj1Top = $obj1.offset().top;
+		var obj1Height = $obj1.height();
+		var obj2Top = $obj2.offset().top;
+		var obj2Height = $obj2.height();
+	    if (!(obj1Left>=(obj2Left+obj2Width) || obj2Left>=(obj1Left+obj1Width) || obj1Top>=(obj2Top+obj2Height) || obj2Top>=(obj1Top+obj1Height))) {
+	        console.log('crashed');
+	        createFood();
+	        createBody();
+	        //setInterval(bodyFollow,200);
+	    }
+	}
+	function createFood() {
+		$('#food').css('left', Math.floor(Math.random()*20)*10+'px');
+		$('#food').css('top', Math.floor(Math.random()*20)*10+'px');
+		console.log($('#food').position().left+", "+$('#food').position().top);
+	}
+	function createBody() {
+		$('<div></div>').addClass('body').appendTo($('#grid'));
+	}
 }
 
-function crashExam(obj1, obj2) {
-    var obj1Left = obj1.offsetLeft;
-    var obj1Width = obj1.offsetLeft + obj1.offsetWidth;
-    var obj1Top = obj1.offsetTop;
-    var obj1Height = obj1.offsetTop + obj1.offsetHeight;
-    var obj2Left = obj2.offsetLeft;
-    var obj2Width = obj2.offsetLeft + obj2.offsetWidth;
-    var obj2Top = obj2.offsetTop;
-    var obj2Height = obj2.offsetTop + obj2.offsetHeight;
-    if ( !(obj1Left > obj2Width || obj1Width < obj2Left || obj1Top > obj2Height || obj1Height < obj2Top) ) {
-        $body = document.createElement('div');
-        $body.addClass('body');
-        $body.appendTo($('grid'));
-        createFood();
-        setInterval(bodyFollow,200);
-};
 
+/*
 function bodyFollow() {
 	var place=0;
 	for (var i = 0; i < $('.body').length; i++) {
@@ -51,32 +87,8 @@ function bodyFollow() {
 }
 */
 
+
+
 $(document).ready(function() {
-	
-	$(document).keydown(function(event) {
-		switch(event.which) {
-			case 37: //moveLeft
-				clearInterval(timer);
-				timer=window.setInterval(function(){snakeMove('left');},500);
-				//snakeMove('left');
-				break;
-			case 38: //moveUp
-				clearInterval(timer);
-				timer=window.setInterval(function(){snakeMove('up');},500);
-				//snakeMove('up');
-				break;
-			case 39: //moveRight
-				clearInterval(timer);
-				timer=window.setInterval(function(){snakeMove('right');},500);
-				//snakeMove('right');
-				break;
-			case 40: //moveDown
-				clearInterval(timer);
-				timer=window.setInterval(function(){snakeMove('down');},500);
-				//snakeMove('down');
-				break;
-			default:
-				break;
-		}
-	});
+	init();
 });
